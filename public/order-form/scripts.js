@@ -1,4 +1,3 @@
-const serverUrl = '';
 const orderItems = {
     undefined: { label: 'Pick an item', imgUrl: './assets/question.jpg' },
     bottle: { label: 'Bottle', imgUrl: './assets/bottle.png' },
@@ -7,14 +6,14 @@ const orderItems = {
 }
 const errorMessages = {
     '450': 'Item out of stock. :(',
-    '550': 'Exiting user. Not allowed to place another order at the moment.',
+    '550': 'Existing user. Not allowed to place another order at the moment.',
     '650': 'Outside of delivery zone. :(',
     '000': 'Oops! Looks like we\'re missing some information.'
 }
 const submitButton = document.getElementById('confirm-button');
 const order = document.getElementById('order');
 const errorMsg = document.getElementById('error');
-const size = document.getElementById('sizing');
+const size = document.getElementById('size');
 const givenName = document.getElementById('givenName');
 const surname = document.getElementById('surname');
 const email = document.getElementById('email');
@@ -40,7 +39,7 @@ const handleToggleErrorMessage = (errorStatus) => {
 
 const handleSubmit = (event) => {
     event.preventDefault();
-
+    console.log(size.value);
     submitButton.disabled = true;
 
     const data = {
@@ -56,7 +55,7 @@ const handleSubmit = (event) => {
         country: country.value
     };
 
-    fetch(`${serverUrl}/order`, {
+    fetch('/order', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
@@ -68,11 +67,11 @@ const handleSubmit = (event) => {
     .then(data => {
         const { status, error } = data;
         if (status === 'success') {
-            window.location.href = '/order-confirmed';
-        } else if (data.error) {
+            window.location.href = '/order-confirmation';
+        } else if (error) {
             submitButton.disabled = false;
             errorMsg.style.display = 'flex';
-            errorMsg.innerText = error;
+            errorMsg.innerText = errorMessages[error];
         }
     });
 }
