@@ -1,6 +1,6 @@
 # Exercise 2
 
-Take a look at the form that is available at [`/order-form`](http://localhost:8000/user-form). The form itself in in the `public` folder.
+Take a look at the form that is available at [`/order-form`](http://localhost:8000/order-form). The form itself in in the `public` folder.
 
 It is an order form for promotional products. Users need to fill out the complete form. All fields are required.
 
@@ -57,5 +57,5 @@ The form communicates with the following endpoints:
 
 ## Extra
 
-If you feel inclined, you could create a better order confirmation page. It would be cool for that page to render they're order information.
+If you feel inclined, you could create a better order confirmation page. It would be cool for that page to render their order information.
 
